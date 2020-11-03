@@ -22,14 +22,24 @@ class ProductItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
-        child: InkWell(
-          borderRadius: BorderRadius.circular(15),
-          splashColor: Colors.purple,
-          onTap: () => goToDetails(context, product),
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+                child: Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
+            )),
+            Positioned.fill(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15),
+                  splashColor: Theme.of(context).accentColor,
+                  onTap: () => goToDetails(context, product),
+                ),
+              ),
+            ),
+          ],
         ),
         footer: GridTileBar(
           leading: IconButton(
