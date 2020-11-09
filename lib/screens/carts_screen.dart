@@ -24,15 +24,21 @@ class CartsScreen extends StatelessWidget {
                     "Total",
                     style: TextStyle(fontSize: 20.0),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  Spacer(),
                   Consumer<Cart>(builder: (ctx, cartData, extraChild) {
                     return Chip(
                       label: Text("\$${cartData.totalAmount}"),
                       backgroundColor: Theme.of(context).primaryColor,
                     );
-                  })
+                  }),
+                  FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Checkout",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      )),
                 ],
               ),
             ),
