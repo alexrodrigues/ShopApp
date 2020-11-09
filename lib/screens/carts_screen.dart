@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/providers/carts_provider.dart';
+
+import '../providers/carts_provider.dart';
+import '../widgets/cart_items.dart';
 
 class CartsScreen extends StatelessWidget {
   static const ROUTE_NAME = "CartsScreen";
@@ -42,7 +44,8 @@ class CartsScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          Expanded(child: CartsItems()),
         ],
       ),
     );
