@@ -36,7 +36,9 @@ class CartsItems extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   child: Image.network(
-                      cart.items.values.toList()[position].imageUrl),
+                    cart.items.values.toList()[position].imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 title: Text(cart.items.values.toList()[position].title),
                 trailing: Text(
