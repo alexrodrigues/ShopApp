@@ -4,9 +4,17 @@ import 'package:provider/provider.dart';
 import '../providers/carts_provider.dart';
 import '../providers/orders_provider.dart';
 import '../widgets/cart_items.dart';
+import '../screens/orders_screen.dart';
 
 class CartsScreen extends StatelessWidget {
   static const ROUTE_NAME = "CartsScreen";
+
+  void onClickCheckout(BuildContext context, Cart cartData) {
+    Provider.of<Order>(context, listen: false)
+        .addOrder(cartData.items.values.toList(), cartData.totalAmount);
+    cartData.clear();
+    Navigator.of(context).pushNamed(OrdersScreen.ROUTE_NAME);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +43,7 @@ class CartsScreen extends StatelessWidget {
                   ),
                   FlatButton(
                       onPressed: () {
-                        Provider.of<Order>(context, listen: false).addOrder(
-                            cartData.items.values.toList(),
-                            cartData.totalAmount);
-                        cartData.clear();
+                        onClickCheckout(context, cartData);
                       },
                       child: Text(
                         "Checkout",
