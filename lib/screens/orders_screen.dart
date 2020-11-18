@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../widgets/app_drawer.dart';
 import '../providers/orders_provider.dart';
 import '../widgets/order_item.dart' as OrderWidget;
 
@@ -14,6 +15,7 @@ class OrdersScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Orders"),
       ),
+      drawer: AppDrawer(),
       body: ListView.builder(
         itemCount: orders.ordersData.length,
         itemBuilder: (context, index) {

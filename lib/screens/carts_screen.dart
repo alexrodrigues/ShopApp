@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:alert/alert.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/carts_provider.dart';
 import '../providers/orders_provider.dart';
 import '../widgets/cart_items.dart';
-import '../screens/orders_screen.dart';
 
-class CartsScreen extends StatelessWidget {
+class CartsScreen extends StatefulWidget {
   static const ROUTE_NAME = "CartsScreen";
 
+  @override
+  _CartsScreenState createState() => _CartsScreenState();
+}
+
+class _CartsScreenState extends State<CartsScreen> {
   void onClickCheckout(BuildContext context, Cart cartData) {
-    Provider.of<Order>(context, listen: false)
-        .addOrder(cartData.items.values.toList(), cartData.totalAmount);
-    cartData.clear();
-    Navigator.of(context).pushNamed(OrdersScreen.ROUTE_NAME);
+    if (cartData.totalAmount > 0.0) {
+      Provider.of<Order>(context, listen: false)
+          .addOrder(cartData.items.values.toList(), cartData.totalAmount);
+      cartData.clear();
+      Alert(message: "Order generated with success").show();
+    } else {
+      Alert(message: "Cart is empty").show();
+    }
   }
 
   @override
