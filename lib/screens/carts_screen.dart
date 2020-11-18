@@ -46,7 +46,7 @@ class _CartsScreenState extends State<CartsScreen> {
                   ),
                   Spacer(),
                   Chip(
-                    label: Text("\$${cartData.totalAmount}"),
+                    label: Text("\$${cartData.totalAmount.toStringAsFixed(2)}"),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   FlatButton(
