@@ -38,27 +38,30 @@ class _OrderItemState extends State<OrderItem> {
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
                 height: min(
-                    (widget._order.products.length * 20 + 10).toDouble(), 100),
+                    (widget._order.products.length * 20 + 30).toDouble(), 100),
                 child: ListView(
                   children: widget._order.products
-                      .map((e) => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                e.title,
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                      .map((e) => Padding(
+                            padding: EdgeInsets.all(4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  e.title,
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "${e.quantitiy} x \$ ${e.price}",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.grey,
+                                Text(
+                                  "${e.quantitiy} x \$ ${e.price}",
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ))
                       .toList(),
                 ))
