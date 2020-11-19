@@ -16,11 +16,30 @@ class ProductItem extends StatelessWidget {
     );
   }
 
+  void addItem(BuildContext context, Product product) {
+    final cart = Provider.of<Cart>(context, listen: false);
+    cart.addItem(
+      product.id,
+      product.title,
+      product.imageUrl,
+      product.price,
+    );
+    Scaffold.of(context).hideCurrentSnackBar();
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("add item to cart"),
+      action: SnackBarAction(
+        label: "Undo",
+        onPressed: () {
+          cart.removeSingleItem(product.id);
+        },
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
-    final cart = Provider.of<Cart>(context, listen: false);
-    // nao precisa ser a raiz pode ser so o widget que voce quer ouvir
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -58,12 +77,7 @@ class ProductItem extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              cart.addItem(
-                product.id,
-                product.title,
-                product.imageUrl,
-                product.price,
-              );
+              addItem(context, product);
             },
             color: Theme.of(context).accentColor,
           ),
